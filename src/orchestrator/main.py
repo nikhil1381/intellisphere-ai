@@ -1,4 +1,5 @@
 from importlib import import_module
+from src.config.settings import Settings
 
 try:
     load_dotenv = import_module("dotenv").load_dotenv
@@ -10,8 +11,8 @@ import os
 
 load_dotenv()
 
-endpoint = os.getenv("AZURE_AI_FOUNDRY_ENDPOINT")
-model = os.getenv("MODEL_DEPLOYMENT_NAME")
+endpoint = Settings.OPENAI_ENDPOINT
+model = Settings.OPENAI_DEPLOYMENT
 
 print("IntelliSphere AI")
 print(f"Endpoint: {endpoint}")

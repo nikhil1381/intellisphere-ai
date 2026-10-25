@@ -1,5 +1,6 @@
 from openai import AzureOpenAI
 from dotenv import load_dotenv
+from src.config.settings import Settings
 
 import os
 
@@ -11,15 +12,15 @@ class RouterAgent:
     def __init__(self):
 
         self.client = AzureOpenAI(
-            api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+            api_key=Settings.OPENAI_API_KEY,
             api_version="2024-12-01-preview",
-            azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT")
+            azure_endpoint=Settings.OPENAI_ENDPOINT
         )
 
     def determine_agent(self, question):
 
         response = self.client.chat.completions.create(
-            model=os.getenv("MODEL_DEPLOYMENT_NAME"),
+            model=Settings.OPENAI_DEPLOYMENT,
             messages=[
                 {
                     "role": "system",

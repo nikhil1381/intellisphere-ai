@@ -2,7 +2,7 @@ from src.agents.router_agent import RouterAgent
 from src.agents.hr_agent import HRAgent
 from src.agents.it_agent import ITAgent
 from src.agents.finance_agent import FinanceAgent
-
+from src.services.logger_service import LoggerService
 from src.services.memory_service import MemoryService
 
 
@@ -23,7 +23,9 @@ class IntelliSphereCopilot:
             "user",
             question
         )
-
+        LoggerService.log(
+            f"Question received: {question}"
+        )
         route = self.router.determine_agent(question)
 
         print(f"\n[Router Selected]: {route}")
@@ -44,7 +46,12 @@ class IntelliSphereCopilot:
             "assistant",
             answer
         )
-
+        LoggerService.log(
+            f"Agent selected: {route}"
+        )
+        LoggerService.log(
+            "Response generated"
+        )
         return answer
 
     def show_memory(self):
