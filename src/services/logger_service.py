@@ -1,0 +1,13 @@
+from datetime import datetime
+
+
+class LoggerService:
+
+    @staticmethod
+    def log(message):
+
+        timestamp = datetime.now().strftime(
+            "%Y-%m-%d %H:%M:%S"
+        )
+
+        print(f"[{timestamp}] {message}")

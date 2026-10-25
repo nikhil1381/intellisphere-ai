@@ -1,10 +1,12 @@
 from src.services.search_query_service import get_search_client
-
+from src.services.logger_service import LoggerService
 
 class SearchPlugin:
-
+    
     def search_documents(self, query: str) -> str:
-
+        LoggerService.log(
+            f"Searching for: {query}"
+        )
         client = get_search_client()
 
         results = client.search(
