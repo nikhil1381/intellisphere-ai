@@ -33,6 +33,41 @@ IntelliSphere AI is an enterprise-grade AI platform that combines:
 - GitHub GenAIOps
  
 to provide secure knowledge discovery, workflow automation, analytics, and enterprise copilots.
+User
+ │
+ ▼
+
+IntelliSphere Copilot
+ │
+ ▼
+
+Router Agent
+ │
+ ▼
+
+Supervisor Agent
+ │
+ ├── HR Agent
+ ├── IT Agent
+ └── Finance Agent
+
+ │
+ ▼
+
+Search Plugin
+ │
+ ▼
+
+Azure AI Search
+ │
+ ▼
+
+Enterprise Knowledge
+
+ │
+ ▼
+
+GPT-4.1-mini
 
 ## Modules
 
