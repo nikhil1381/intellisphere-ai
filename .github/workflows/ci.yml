@@ -49,3 +49,7 @@ jobs:
       - name: Build Success
         run: |
           echo "IntelliSphereAI build completed successfully."
+
+      - name: Run RAG Evaluations
+        run: |
+            python -m evaluations.run_rag_evaluations

@@ -1,0 +1,19 @@
+{
+    "timestamp": "2026-10-30 06:42:37.629896+00:00",
+    "total": 2,
+    "passed": 2,
+    "failed": 0,
+    "success_rate": 100.0,
+    "results": [
+        {
+            "question": "How many vacation days do employees receive?",
+            "answer": "Employees receive 20 vacation days annually.",
+            "passed": true
+        },
+        {
+            "question": "Can employees carry over vacation days?",
+            "answer": "The information about carrying over vacation days was not found.",
+            "passed": true
+        }
+    ]
+}

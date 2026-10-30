@@ -1,0 +1,14 @@
+[
+  {
+    "question": "How many vacation days do employees receive?",
+    "expected_keywords": [
+      "vacation"
+    ]
+  },
+  {
+    "question": "Can employees carry over vacation days?",
+    "expected_keywords": [
+      "carry"
+    ]
+  }
+]

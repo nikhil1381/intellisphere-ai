@@ -53,3 +53,40 @@ class RAGPlugin:
         )
 
         return response.choices[0].message.content
+
+    def answer_with_context(self, question):
+
+        context = self.search_plugin.search_documents(
+            question
+        )
+
+        response = self.client.chat.completions.create(
+            model=Settings.OPENAI_DEPLOYMENT,
+            messages=[
+                {
+                    "role": "system",
+                    "content": """
+                    Answer ONLY using the provided context.
+                    If the answer is not present,
+                    say that it was not found.
+                    """
+                },
+                {
+                    "role": "user",
+                    "content": f"""
+                    Context:
+
+                    {context}
+
+                    Question:
+
+                    {question}
+                    """
+                }
+            ]
+        )
+
+        return {
+            "context": context,
+            "answer": response.choices[0].message.content
+        }
