@@ -1,0 +1,32 @@
+[
+    {
+        "rag_score": 100.0,
+        "groundedness_score": 100.0,
+        "overall_score": 100.0,
+        "deployment_approved": true
+    },
+    {
+        "rag_score": 100.0,
+        "groundedness_score": 100.0,
+        "overall_score": 100.0,
+        "deployment_approved": true
+    },
+    {
+        "rag_score": 100.0,
+        "groundedness_score": 100.0,
+        "overall_score": 100.0,
+        "deployment_approved": true
+    },
+    {
+        "rag_score": 100.0,
+        "groundedness_score": 100.0,
+        "overall_score": 100.0,
+        "deployment_approved": true
+    },
+    {
+        "rag_score": 100.0,
+        "groundedness_score": 100.0,
+        "overall_score": 100.0,
+        "deployment_approved": true
+    }
+]
