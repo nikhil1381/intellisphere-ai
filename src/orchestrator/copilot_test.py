@@ -28,3 +28,11 @@ for question in questions:
     
     from monitoring.dashboard import print_dashboard
     print_dashboard()
+
+    from monitoring.agent_scorecard import (
+    print_agent_scorecard
+    )
+    from monitoring.kb_health import (
+    KnowledgeBaseHealth
+    )
+    KnowledgeBaseHealth.print_kb_health()

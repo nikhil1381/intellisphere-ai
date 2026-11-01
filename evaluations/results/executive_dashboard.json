@@ -1,0 +1,12 @@
+{
+    "requests": 3,
+    "average_latency": 1.51,
+    "quality_score": 100,
+    "deployment_approved": true,
+    "drift_status": "STABLE",
+    "top_agent": "HR",
+    "missing_topics": [
+        "My VPN is not working",
+        "What is the hotel reimbursement limit?"
+    ]
+}

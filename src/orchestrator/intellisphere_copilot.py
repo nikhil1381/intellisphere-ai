@@ -9,6 +9,9 @@ from src.services.memory_service import MemoryService
 from monitoring.request_tracker import RequestTracker
 from monitoring.telemetry import Telemetry
 from monitoring.metrics import Metrics
+from monitoring.kb_health import (
+    KnowledgeBaseHealth
+)
 import time
 
 from monitoring.app_insights import (
@@ -59,7 +62,9 @@ class IntelliSphereCopilot:
         Metrics.record_agent(
             route
         )
-
+        Metrics.record_agent_request(
+            route
+        )
         Telemetry.log_event(
             request_id,
             "ROUTING",
@@ -106,12 +111,27 @@ class IntelliSphereCopilot:
         LoggerService.log(
             "Response generated"
         )
+        if answer == "No results found.":
+            Metrics.record_agent_failure(
+                route
+            )
+            KnowledgeBaseHealth.record_missing_topic(
+                question
+            )
+        else:
+            Metrics.record_agent_success(
+                route
+            )
 
         latency = (
             time.time()
             - start_time
         )
         Metrics.record_latency(
+            latency
+        )
+        Metrics.record_agent_latency(
+            route,
             latency
         )
         Telemetry.log_event(
