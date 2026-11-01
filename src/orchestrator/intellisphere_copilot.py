@@ -8,14 +8,19 @@ from src.services.memory_service import MemoryService
 
 from monitoring.request_tracker import RequestTracker
 from monitoring.telemetry import Telemetry
-
+from monitoring.metrics import Metrics
 import time
+
+from monitoring.app_insights import (
+    initialize_monitoring
+)
+
 
 
 class IntelliSphereCopilot:
 
     def __init__(self):
-
+        initialize_monitoring()
         self.router = RouterAgent()
 
         self.hr = HRAgent()
@@ -30,7 +35,7 @@ class IntelliSphereCopilot:
             RequestTracker
             .generate_request_id()
         )
-
+        Metrics.record_request()
         Telemetry.log_event(
             request_id,
             "REQUEST",
@@ -50,6 +55,9 @@ class IntelliSphereCopilot:
 
         route = self.router.determine_agent(
             question
+        )
+        Metrics.record_agent(
+            route
         )
 
         Telemetry.log_event(
@@ -103,7 +111,9 @@ class IntelliSphereCopilot:
             time.time()
             - start_time
         )
-
+        Metrics.record_latency(
+            latency
+        )
         Telemetry.log_event(
             request_id,
             "LATENCY",

@@ -20,6 +20,10 @@ class Settings:
     SEARCH_ENDPOINT = os.getenv(
         "SEARCH_ENDPOINT"
     )
+    
+    APPINSIGHTS_CONNECTION_STRING = os.getenv(
+    "APPLICATIONINSIGHTS_CONNECTION_STRING"
+    )
 
     SEARCH_API_KEY = os.getenv(
         "SEARCH_API_KEY"

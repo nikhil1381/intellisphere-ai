@@ -25,3 +25,6 @@ for question in questions:
 
     print("\nANSWER:\n")
     print(answer)
+    
+    from monitoring.dashboard import print_dashboard
+    print_dashboard()
