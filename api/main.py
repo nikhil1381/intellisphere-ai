@@ -1,28 +1,53 @@
 from fastapi import FastAPI  # type: ignore[reportMissingImports]
+from fastapi.openapi.utils import get_openapi
 from pydantic import BaseModel
 
 from src.orchestrator.intellisphere_copilot import (
     IntelliSphereCopilot
 )
+from src.integrations.mcp.server import mcp
+from src.integrations.a2a.routes import router as a2a_router
 
-app = FastAPI()
-
+app = FastAPI(
+    title="IntelliSphereAI",
+    version="1.0.0",
+    description="Enterprise HR, IT and Finance Assistant"
+)
+app.mount(
+    "/mcp",
+    mcp.streamable_http_app()
+)
 copilot = IntelliSphereCopilot()
 
+app.include_router(a2a_router)
 
 class QuestionRequest(BaseModel):
     question: str
 
 
-@app.get("/health")
+class HealthResponse(BaseModel):
+    status: str
+
+
+class AskResponse(BaseModel):
+    answer: str
+
+
+@app.get(
+    "/health",
+    response_model=HealthResponse
+)
 def health():
 
-    return {
-        "status": "healthy"
-    }
+    return HealthResponse(
+        status="healthy"
+    )
 
 
-@app.post("/ask")
+@app.post(
+    "/ask",
+    response_model=AskResponse
+)
 def ask(
     request: QuestionRequest
 ):
@@ -31,6 +56,26 @@ def ask(
         request.question
     )
 
-    return {
-        "answer": answer
-    }
+    return AskResponse(
+        answer=answer
+    )
+def custom_openapi():
+
+    if app.openapi_schema:
+        return app.openapi_schema
+
+    openapi_schema = get_openapi(
+        title="IntelliSphereAI",
+        version="1.0.0",
+        description="Enterprise HR, IT and Finance Assistant",
+        routes=app.routes,
+    )
+
+    openapi_schema["openapi"] = "3.0.1"
+
+    app.openapi_schema = openapi_schema
+
+    return app.openapi_schema
+
+
+app.openapi = custom_openapi
