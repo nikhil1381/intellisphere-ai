@@ -12,3 +12,9 @@ class A2ATaskRequest(BaseModel):
 
 class A2ATaskResponse(BaseModel):
     message: A2AMessage
+
+class JsonRpcRequest(BaseModel):
+    jsonrpc: str
+    id: str | int | None = None
+    method: str
+    params: dict
