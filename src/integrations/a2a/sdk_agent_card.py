@@ -19,8 +19,9 @@ def build_agent_card():
     #
     interface = card.supported_interfaces.add()
 
-    interface.url = "/a2a"
-    interface.protocol_version = "1.0"
+    interface.url = "https://aca-intellisphere-api.proudmeadow-25abeb5a.eastus2.azurecontainerapps.io/a2a"
+    interface.protocol_binding = "JSONRPC"
+    interface.protocol_version = "1.0"    
 
     #
     # Skill

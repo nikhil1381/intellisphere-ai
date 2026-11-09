@@ -4,6 +4,7 @@ from a2a.server.request_handlers.request_handler import (
 
 from a2a.utils.errors import UnsupportedOperationError
 from a2a.types import a2a_pb2
+from uuid import uuid4
 
 from src.orchestrator.intellisphere_copilot import (
     IntelliSphereCopilot,
@@ -107,6 +108,7 @@ class IntelliSphereRequestHandler(RequestHandler):
         response_part.text = answer
 
         response_message = a2a_pb2.Message()
+        response_message.message_id = str(uuid4())
         response_message.role = a2a_pb2.ROLE_AGENT
         response_message.parts.append(response_part)
 
