@@ -8,17 +8,6 @@ from a2a.types import a2a_pb2
 from src.orchestrator.intellisphere_copilot import (
     IntelliSphereCopilot,
 )
-from a2a.server.routes.agent_card_routes import (
-    create_agent_card_routes,
-)
-
-from a2a.server.routes.jsonrpc_routes import (
-    create_jsonrpc_routes,
-)
-
-from src.integrations.a2a.sdk_handler import (
-    IntelliSphereRequestHandler,
-)
 
 class IntelliSphereRequestHandler(RequestHandler):
 

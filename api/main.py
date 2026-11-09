@@ -7,6 +7,9 @@ from src.orchestrator.intellisphere_copilot import (
 )
 from src.integrations.mcp.server import mcp
 from src.integrations.a2a.routes import router as a2a_router
+from src.integrations.a2a.sdk_routes import (
+    register_a2a_sdk_routes
+)
 
 app = FastAPI(
     title="IntelliSphereAI",
@@ -19,7 +22,10 @@ app.mount(
 )
 copilot = IntelliSphereCopilot()
 
-app.include_router(a2a_router)
+#app.include_router(a2a_router)
+register_a2a_sdk_routes(
+    app
+)
 
 class QuestionRequest(BaseModel):
     question: str
